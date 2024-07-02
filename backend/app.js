@@ -9,6 +9,7 @@ import authorRoutes from './routes/authorRoutes.js';
 import loanRoutes from './routes/loanRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import scheduler from './utils/scheduler.js';
+import backupRoutes from './routes/backupRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +29,7 @@ app.use('/books', bookRoutes);
 app.use('/authors', authorRoutes);
 app.use('/loans', loanRoutes);
 app.use('/users', userRoutes);
+app.use('/backups', backupRoutes);
 
 // Programar tareas
 scheduler.scheduleBackups();
