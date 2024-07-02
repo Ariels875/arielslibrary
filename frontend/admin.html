@@ -13,21 +13,72 @@
       <button id="logout-btn">Cerrar Sesión</button>
     </header>
     <main>
-      <button id="add-book">Agregar Libro</button>
-      <button id="edit-book">Editar Libro</button>
-      <button id="delete-book">Eliminar Libro</button>
-      <button id="add-author">Agregar Autor</button>
-      <button id="edit-author">Editar Autor</button>
-      <button id="delete-author">Eliminar Autor</button>
-      <button id="add-loan">Generar Préstamo</button>
-      <button id="edit-loan">Editar Préstamo</button>
-      <button id="add-user">Agregar Usuario</button>
-      <button id="edit-user">Editar Usuario</button>
-      <button id="delete-user">Eliminar Usuario</button>
-      <button id="view-backups">Ver Lista de Backups</button>
-      <button id="generate-backup">Generar Copia de Seguridad</button>
+      <section id="books-section">
+        <h2>Libros</h2>
+        <button id="add-book">Agregar Libro</button>
+        <button id="edit-book">Editar Libro</button>
+        <button id="delete-book">Eliminar Libro</button>
+        <form id="book-form" style="display: none;">
+          <input type="hidden" id="book-id">
+          <input type="text" id="book-title" placeholder="Título del libro" required>
+          <input type="text" id="book-author" placeholder="Autor del libro" required>
+          <input type="number" id="book-year" placeholder="Año de publicación" required>
+          <button type="submit">Guardar</button>
+        </form>
+      </section>
+
+      <section id="authors-section">
+        <h2>Autores</h2>
+        <button id="add-author">Agregar Autor</button>
+        <button id="edit-author">Editar Autor</button>
+        <button id="delete-author">Eliminar Autor</button>
+        <form id="author-form" style="display: none;">
+          <input type="hidden" id="author-id">
+          <input type="text" id="author-name" placeholder="Nombre del autor" required>
+          <input type="text" id="author-country" placeholder="País del autor" required>
+          <button type="submit">Guardar</button>
+        </form>
+      </section>
+
+      <section id="users-section">
+        <h2>Usuarios</h2>
+        <button id="add-user">Agregar Usuario</button>
+        <button id="edit-user">Editar Usuario</button>
+        <button id="delete-user">Eliminar Usuario</button>
+        <form id="user-form" style="display: none;">
+          <input type="hidden" id="user-id">
+          <input type="text" id="user-name" placeholder="Nombre del usuario" required>
+          <input type="email" id="user-email" placeholder="Email del usuario" required>
+          <input type="password" id="user-password" placeholder="Contraseña" required>
+          <select id="user-role" required>
+            <option value="user">Usuario</option>
+            <option value="admin">Administrador</option>
+          </select>
+          <button type="submit">Guardar</button>
+        </form>
+      </section>
+
+      <section id="loans-section">
+        <h2>Préstamos</h2>
+        <button id="add-loan">Generar Préstamo</button>
+        <button id="edit-loan">Editar Préstamo</button>
+        <form id="loan-form" style="display: none;">
+          <input type="hidden" id="loan-id">
+          <input type="text" id="loan-user" placeholder="ID del usuario" required>
+          <input type="text" id="loan-book" placeholder="ID del libro" required>
+          <input type="date" id="loan-date" required>
+          <input type="date" id="loan-return-date" required>
+          <button type="submit">Guardar</button>
+        </form>
+      </section>
+
+      <section id="backups-section">
+        <h2>Copias de Seguridad</h2>
+        <button id="view-backups">Ver Lista de Backups</button>
+        <button id="generate-backup">Generar Copia de Seguridad</button>
+        <ul id="backups-list" style="display: none;"></ul>
+      </section>
     </main>
-    <div id="backups-list" style="display: none;"></div>
   </div>
   <script src="js/admin.js"></script>
 </body>
