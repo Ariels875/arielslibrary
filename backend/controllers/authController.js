@@ -29,22 +29,27 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log('Intentando login para:', email);
     const [users] = await User.findByEmail(email);
+    console.log('Usuarios encontrados:', users.length);
     if (users.length === 0) {
       return res.status(401).json({ success: false, message: 'Email o contraseña incorrectos' });
     }
 
     const user = users[0];
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    console.log('Usuario encontrado:', user);
+    const isPasswordMatch = await bcrypt.compare(password, user.Contraseña);
+    console.log('¿Contraseña coincide?', isPasswordMatch);
     if (!isPasswordMatch) {
       return res.status(401).json({ success: false, message: 'Email o contraseña incorrectos' });
     }
 
-    const token = jwt.sign({ userId: user.id, role: user.role }, 'secretkey', { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.ID, role: user.Rol }, 'secretkey', { expiresIn: '1h' });
 
-    res.json({ success: true, token, redirectUrl: user.role === 'lector' ? '/' : user.role === 'bibliotecario' ? '/bibliotecario.html' : '/admin.html' });
+    res.json({ success: true, token, redirectUrl: user.Rol === 'lector' ? '/' : user.Rol === 'bibliotecario' ? '/bibliotecario.html' : '/admin.html' });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    console.error('Error en login:', err);
+    res.status(500).json({ success: false, message: 'Error al iniciar sesión', error: err.message });
   }
 };
 

@@ -121,7 +121,7 @@ CREATE TABLE `usuarios` (
   `Rol` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Correo_electronico_UNIQUE` (`Correo_electronico`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +186,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `AgregarUsuario`(
 )
 BEGIN
     INSERT INTO Usuarios (Nombre, Correo_electronico, Fecha_registro, Contraseña)
-    VALUES (p_Nombre, p_Correo_electronico, p_Fecha_registro, SHA2(p_Contraseña, 256));
+    VALUES (p_Nombre, p_Correo_electronico, p_Fecha_registro, p_Contraseña);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -264,4 +264,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-01 23:37:13
+-- Dump completed on 2024-07-02 16:31:25
