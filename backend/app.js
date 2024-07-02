@@ -1,13 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import authRoutes from './routes/authRoutes';
-import bookRoutes from './routes/bookRoutes';
-import authorRoutes from './routes/authorRoutes';
-import loanRoutes from './routes/loanRoutes';
-import userRoutes from './routes/userRoutes';
-import scheduler from './utils/scheduler';
-
+import authRoutes from './routes/authRoutes.js';
+import bookRoutes from './routes/bookRoutes.js';
+import authorRoutes from './routes/authorRoutes.js';
+import loanRoutes from './routes/loanRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import scheduler from './utils/scheduler.js';
 
 const app = express();
 
@@ -20,7 +19,7 @@ app.use('/authors', authorRoutes);
 app.use('/loans', loanRoutes);
 app.use('/users', userRoutes);
 
-scheduler.scheduleBackups(); // Programar backups automáticos
+scheduler.scheduleBackups();
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
