@@ -13,9 +13,16 @@ const register = async (req, res) => {
       role: 'lector',
       registration_date: new Date()
     });
-    res.json({ success: true });
+    
+    if (result.affectedRows > 0) {
+      console.log('Usuario creado:', result);
+      res.json({ success: true, message: 'Usuario registrado exitosamente' });
+    } else {
+      throw new Error('No se pudo crear el usuario');
+    }
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    console.error('Error detallado:', err);
+    res.status(500).json({ success: false, message: 'Error al registrar el usuario', error: err.message });
   }
 };
 

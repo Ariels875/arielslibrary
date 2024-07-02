@@ -6,8 +6,8 @@ class Database {
       this.pool = mysql.createPool({
         host: 'localhost',
         user: 'root',
-        password: 'toor',
-        database: 'currentDB',
+        password: 'toor', // Asegúrate de usar la contraseña correcta
+        database: 'biblioteca', // Nombre de la base de datos en tu archivo SQL
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0

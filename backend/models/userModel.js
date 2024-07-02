@@ -1,12 +1,18 @@
 import db from '../config.js';
 
 const User = {
-  getAll: () => db.query('SELECT * FROM users'),
-  getById: (id) => db.query('SELECT * FROM users WHERE id = ?', [id]),
-  create: (data) => db.query('INSERT INTO users SET ?', data),
-  update: (id, data) => db.query('UPDATE users SET ? WHERE id = ?', [data, id]),
-  delete: (id) => db.query('DELETE FROM users WHERE id = ?', [id]),
-  findByEmail: (email) => db.query('SELECT * FROM users WHERE email = ?', [email])
+  getAll: () => db.pool.query('SELECT * FROM usuarios'),
+  getById: (id) => db.pool.query('SELECT * FROM usuarios WHERE ID = ?', [id]),
+  create: (data) => db.pool.query('INSERT INTO usuarios SET ?', {
+    Nombre: data.name,
+    Correo_electronico: data.email,
+    Contraseña: data.password,
+    Fecha_registro: data.registration_date,
+    Rol: data.role
+  }),
+  update: (id, data) => db.pool.query('UPDATE usuarios SET ? WHERE ID = ?', [data, id]),
+  delete: (id) => db.pool.query('DELETE FROM usuarios WHERE ID = ?', [id]),
+  findByEmail: (email) => db.pool.query('SELECT * FROM usuarios WHERE Correo_electronico = ?', [email])
 };
 
 export default User;

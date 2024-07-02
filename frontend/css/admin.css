@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header {
+    background-color: #1e1e1e;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #BB86FC;
+  }
+  
+  button {
+    background-color: #3700B3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #6200EE;
+  }
+  
+  #logout-btn {
+    background-color: #CF6679;
+  }
+  
+  #logout-btn:hover {
+    background-color: #A00037;
+  }
+  
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  #backups-list {
+    margin-top: 20px;
+    background-color: #1e1e1e;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+  }

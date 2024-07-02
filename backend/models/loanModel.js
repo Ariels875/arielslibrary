@@ -1,12 +1,12 @@
 import db from '../config.js';
 
 const Loan = {
-  getAll: () => db.query('SELECT * FROM loans'),
-  getById: (id) => db.query('SELECT * FROM loans WHERE id = ?', [id]),
-  create: (data) => db.query('INSERT INTO loans SET ?', data),
-  update: (id, data) => db.query('UPDATE loans SET ? WHERE id = ?', [data, id]),
-  delete: (id) => db.query('DELETE FROM loans WHERE id = ?', [id]),
-  getAvailableBooks: () => db.query('SELECT * FROM books WHERE copies_available > 0')
+  getAll: () => db.pool.query('SELECT * FROM prestamos'),
+  getById: (id) => db.pool.query('SELECT * FROM prestamos WHERE ID = ?', [id]),
+  create: (data) => db.pool.query('INSERT INTO prestamos SET ?', data),
+  update: (id, data) => db.pool.query('UPDATE prestamos SET ? WHERE ID = ?', [data, id]),
+  delete: (id) => db.pool.query('DELETE FROM prestamos WHERE ID = ?', [id]),
+  getAvailableBooks: () => db.pool.query('SELECT * FROM libros WHERE Cantidad > 0')
 };
 
 export default Loan;
