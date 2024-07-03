@@ -19,7 +19,8 @@ export const listBackups = (req, res) => {
 };
 
 export const generateBackup = (req, res) => {
-  const backupPath = path.join(backupDir, `backup_${new Date().toISOString().slice(0, 10)}.sql`);
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const backupPath = path.join(backupDir, `backup_${timestamp}.sql`);
   fs.copyFile(currentDBPath, backupPath, (err) => {
     if (err) {
       return res.status(500).json({ error: 'Error generating backup' });
@@ -29,9 +30,18 @@ export const generateBackup = (req, res) => {
 };
 
 export const restoreBackup = (req, res) => {
-  const backupFile = req.params.file;
+  const { backupFile } = req.body;
+  if (!backupFile) {
+    return res.status(400).json({ error: 'Backup file name is required' });
+  }
+
   const backupPath = path.join(backupDir, backupFile);
   
+  // Verifica si el archivo de respaldo existe
+  if (!fs.existsSync(backupPath)) {
+    return res.status(404).json({ error: 'Backup file not found' });
+  }
+
   fs.unlink(currentDBPath, (err) => {
     if (err && err.code !== 'ENOENT') {
       return res.status(500).json({ error: 'Error deleting currentDB.sql' });

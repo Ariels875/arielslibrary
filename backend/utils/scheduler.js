@@ -1,35 +1,46 @@
 import cron from 'node-cron';
-import { exec } from 'child_process';
-import path from 'path';
+import fetch from 'node-fetch';
+
+let backupSchedule = '2 3 * * *'; // Horario predeterminado
+let scheduledTask;
 
 // Función para generar la copia de seguridad
-const generateBackup = () => {
-  const backupPath = path.join(__dirname, 'backups', `backup_${new Date().toISOString().slice(0, 10)}.sql`);
-  const command = `mysqldump -u root -pYourPassword your_database > ${backupPath}`;
-  
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error al generar la copia de seguridad: ${error.message}`);
-      return;
+const generateBackup = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/backups/generate', { method: 'POST' });
+    if (response.ok) {
+      console.log('Copia de seguridad generada con éxito');
+    } else {
+      console.error('Error al generar la copia de seguridad');
     }
-    if (stderr) {
-      console.error(`Stderr: ${stderr}`);
-      return;
-    }
-    console.log(`Copia de seguridad generada en: ${backupPath}`);
-  });
+  } catch (error) {
+    console.error('Error generating backup:', error);
+  }
 };
 
 // Función para programar las copias de seguridad
 const scheduleBackups = () => {
-  // Programar para ejecutar a las 3 AM todos los días
-  cron.schedule('0 3 * * *', generateBackup, {
+  if (scheduledTask) {
+    scheduledTask.stop();
+  }
+  scheduledTask = cron.schedule(backupSchedule, generateBackup, {
     scheduled: true,
-    timezone: "America/New_York" // Ajusta según tu zona horaria
+    timezone: "America/Guayaquil"
   });
-  console.log('Tarea de copias de seguridad programada para ejecutarse a las 3 AM todos los días');
+  console.log(`Tarea de copias de seguridad programada para: ${backupSchedule}`);
+};
+
+const updateBackupSchedule = (newSchedule) => {
+  if (cron.validate(newSchedule)) {
+    backupSchedule = newSchedule;
+    scheduleBackups();
+    return true;
+  }
+  return false;
 };
 
 export default {
-  scheduleBackups
+  scheduleBackups,
+  updateBackupSchedule,
+  getBackupSchedule: () => backupSchedule
 };

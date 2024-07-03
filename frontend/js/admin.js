@@ -154,7 +154,45 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Error al guardar el autor');
       }
     });
-  
+    
+
+    async function displayBackupSchedule() {
+      try {
+        const response = await fetch('/backups/schedule');
+        const data = await response.json();
+        const scheduleSpan = document.getElementById('backup-schedule');
+        scheduleSpan.textContent = data.schedule;
+      } catch (error) {
+        console.error('Error fetching backup schedule:', error);
+        document.getElementById('backup-schedule-info').style.display = 'none';
+      }
+    }
+
+    document.getElementById('update-schedule-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const newSchedule = document.getElementById('new-schedule').value;
+      try {
+        const response = await fetch('/backups/schedule', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ schedule: newSchedule }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          alert(data.message);
+          displayBackupSchedule(); // Actualizar la visualización del horario
+        } else {
+          const error = await response.json();
+          alert(error.error);
+        }
+      } catch (error) {
+        console.error('Error updating backup schedule:', error);
+        alert('Error al actualizar el horario de copia de seguridad');
+      }
+    });
+
     // Users
     document.getElementById('add-user').addEventListener('click', () => {
       userForm.reset();
@@ -292,6 +330,10 @@ document.addEventListener('DOMContentLoaded', () => {
         backups.forEach(backup => {
           const item = document.createElement('li');
           item.textContent = backup;
+          const restoreButton = document.createElement('button');
+          restoreButton.textContent = 'Restaurar';
+          restoreButton.addEventListener('click', () => restoreBackup(backup));
+          item.appendChild(restoreButton);
           backupsList.appendChild(item);
         });
         backupsList.style.display = 'block';
@@ -300,6 +342,28 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Error al obtener la lista de copias de seguridad');
       }
     });
+    
+    async function restoreBackup(backupFile) {
+      if (confirm(`¿Está seguro que desea restaurar la base de datos a la versión ${backupFile}?`)) {
+        try {
+          const response = await fetch('/backups/restore', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ backupFile }),
+          });
+          if (response.ok) {
+            alert('Base de datos restaurada con éxito');
+          } else {
+            alert('Error al restaurar la base de datos');
+          }
+        } catch (error) {
+          console.error('Error restoring backup:', error);
+          alert('Error al restaurar la base de datos');
+        }
+      }
+    }
   
     document.getElementById('generate-backup').addEventListener('click', async () => {
       try {
@@ -354,6 +418,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  
+
   function displaySearchResults(results, type) {
     const searchResultsSection = document.getElementById('search-results');
     const resultsContainer = document.getElementById('results-container');
@@ -398,4 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.removeItem('token');
       window.location.href = '/login.html';
     });
+    // Llamar a la función cuando se carga la página
+    displayBackupSchedule();
+
   });

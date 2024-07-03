@@ -84,9 +84,15 @@
           <button type="submit">Guardar</button>
         </form>
       </section>
-
+      
       <section id="backups-section">
         <h2>Copias de Seguridad</h2>
+        <p id="backup-schedule-info">Hora programada de copia de seguridad: <span id="backup-schedule"></span> <br><br>
+        Si desea cambiar la hora de copia de seguridad, ingrese la nueva programación (formato cron)</p>
+        <form id="update-schedule-form">
+          <input type="text" id="new-schedule" placeholder="Nueva programación (formato cron)">
+          <button type="submit">Actualizar Horario</button>
+        </form>
         <button id="view-backups">Ver Lista de Backups</button>
         <button id="generate-backup">Generar Copia de Seguridad</button>
         <ul id="backups-list" style="display: none;"></ul>
