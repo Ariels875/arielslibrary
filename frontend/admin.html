@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +13,30 @@
       <button id="logout-btn">Cerrar Sesión</button>
     </header>
     <main>
+      <section id="search-section">
+        <select id="search-type">
+          <option value="">Seleccione tipo de búsqueda</option>
+          <option value="libro">Libro</option>
+          <option value="usuario">Usuario</option>
+          <option value="autor">Autor</option>
+          <option value="prestamo">Préstamo</option>
+        </select>
+        <input type="text" id="search-input" placeholder="Buscar...">
+        <button id="search-btn">Buscar</button>
+      </section>
+
       <section id="books-section">
         <h2>Libros</h2>
         <button id="add-book">Agregar Libro</button>
         <button id="edit-book">Editar Libro</button>
         <button id="delete-book">Eliminar Libro</button>
         <form id="book-form" style="display: none;">
-          <input type="hidden" id="book-id">
+          <input type="text" id="book-isbn" placeholder="ISBN" required>
           <input type="text" id="book-title" placeholder="Título del libro" required>
-          <input type="text" id="book-author" placeholder="Autor del libro" required>
+          <input type="number" id="book-author" placeholder="ID del autor" required>
           <input type="number" id="book-year" placeholder="Año de publicación" required>
+          <input type="text" id="book-genre" placeholder="Género" required>
+          <textarea id="book-description" placeholder="Descripción"></textarea>
           <button type="submit">Guardar</button>
         </form>
       </section>
@@ -33,9 +47,9 @@
         <button id="edit-author">Editar Autor</button>
         <button id="delete-author">Eliminar Autor</button>
         <form id="author-form" style="display: none;">
-          <input type="hidden" id="author-id">
           <input type="text" id="author-name" placeholder="Nombre del autor" required>
-          <input type="text" id="author-country" placeholder="País del autor" required>
+          <input type="text" id="author-nationality" placeholder="Nacionalidad" required>
+          <input type="date" id="author-birthdate" required>
           <button type="submit">Guardar</button>
         </form>
       </section>
@@ -46,10 +60,10 @@
         <button id="edit-user">Editar Usuario</button>
         <button id="delete-user">Eliminar Usuario</button>
         <form id="user-form" style="display: none;">
-          <input type="hidden" id="user-id">
           <input type="text" id="user-name" placeholder="Nombre del usuario" required>
-          <input type="email" id="user-email" placeholder="Email del usuario" required>
+          <input type="email" id="user-email" placeholder="Correo electrónico" required>
           <input type="password" id="user-password" placeholder="Contraseña" required>
+          <input type="date" id="user-registration-date" required>
           <select id="user-role" required>
             <option value="user">Usuario</option>
             <option value="admin">Administrador</option>
@@ -63,9 +77,8 @@
         <button id="add-loan">Generar Préstamo</button>
         <button id="edit-loan">Editar Préstamo</button>
         <form id="loan-form" style="display: none;">
-          <input type="hidden" id="loan-id">
-          <input type="text" id="loan-user" placeholder="ID del usuario" required>
-          <input type="text" id="loan-book" placeholder="ID del libro" required>
+          <input type="text" id="loan-book-isbn" placeholder="ISBN del libro" required>
+          <input type="number" id="loan-user-id" placeholder="ID del usuario" required>
           <input type="date" id="loan-date" required>
           <input type="date" id="loan-return-date" required>
           <button type="submit">Guardar</button>
