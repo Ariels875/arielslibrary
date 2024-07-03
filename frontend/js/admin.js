@@ -315,6 +315,82 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   
+
+  // Search functionality
+  searchBtn.addEventListener('click', async () => {
+    const type = searchType.value;
+    const query = searchInput.value.trim();
+
+    if (!type || !query) {
+      alert('Por favor, seleccione un tipo de búsqueda y ingrese un valor');
+      return;
+    }
+
+    try {
+      let url;
+      switch (type) {
+        case 'libro':
+          url = `/books/search?title=${encodeURIComponent(query)}`;
+          break;
+        case 'usuario':
+          url = `/users/search?name=${encodeURIComponent(query)}`;
+          break;
+        case 'autor':
+          url = `/authors/search?name=${encodeURIComponent(query)}`;
+          break;
+        case 'prestamo':
+          url = `/loans/search?date=${encodeURIComponent(query)}`;
+          break;
+      }
+
+      const response = await fetch(url);
+      const results = await response.json();
+      
+      // Display results (you'll need to implement this function)
+      displaySearchResults(results, type);
+    } catch (error) {
+      console.error('Error searching:', error);
+      alert('Error al realizar la búsqueda');
+    }
+  });
+
+  function displaySearchResults(results, type) {
+    const searchResultsSection = document.getElementById('search-results');
+    const resultsContainer = document.getElementById('results-container');
+    resultsContainer.innerHTML = ''; // Limpiar resultados anteriores
+  
+    if (results.length === 0) {
+      resultsContainer.innerHTML = '<p>No se encontraron resultados.</p>';
+    } else {
+      const table = document.createElement('table');
+      table.innerHTML = '<thead><tr></tr></thead><tbody></tbody>';
+      const headerRow = table.querySelector('thead tr');
+      const tbody = table.querySelector('tbody');
+  
+      // Crear encabezados de tabla basados en las claves del primer resultado
+      Object.keys(results[0]).forEach(key => {
+        const th = document.createElement('th');
+        th.textContent = key.charAt(0).toUpperCase() + key.slice(1); // Capitalizar primera letra
+        headerRow.appendChild(th);
+      });
+  
+      // Llenar la tabla con los resultados
+      results.forEach(result => {
+        const row = document.createElement('tr');
+        Object.values(result).forEach(value => {
+          const td = document.createElement('td');
+          td.textContent = value;
+          row.appendChild(td);
+        });
+        tbody.appendChild(row);
+      });
+  
+      resultsContainer.appendChild(table);
+    }
+  
+    searchResultsSection.style.display = 'block';
+  }
+
     // Logout
     document.getElementById('logout-btn').addEventListener('click', () => {
       // Implementa la lógica de cierre de sesión aquí
