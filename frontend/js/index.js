@@ -7,15 +7,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const loadBooks = (query = '') => {
     fetch(`/books?offset=${offset}&limit=${limit}&query=${query}`)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(books => {
         const booksList = document.getElementById('books-list');
         booksList.innerHTML = '';
         books.forEach(book => {
           const bookItem = document.createElement('div');
-          bookItem.textContent = `${book.title} - ${book.author}`;
+          bookItem.classList.add('book-item');
+  
+          const img = document.createElement('img');
+          img.src = book.URLPortada;
+          img.alt = book.Titulo;
+          bookItem.appendChild(img);
+  
+          const info = document.createElement('div');
+          info.classList.add('book-info');
+  
+          const title = document.createElement('h3');
+          title.textContent = book.Titulo;
+          info.appendChild(title);
+  
+          const year = document.createElement('p');
+          year.textContent = `Año de publicación: ${book.Anio_publicacion}`;
+          info.appendChild(year);
+  
+          const genre = document.createElement('p');
+          genre.textContent = `Género: ${book.Genero}`;
+          info.appendChild(genre);
+  
+          const description = document.createElement('p');
+          description.textContent = book.Descripcion;
+          info.appendChild(description);
+  
+          bookItem.appendChild(info);
           booksList.appendChild(bookItem);
         });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error al cargar los libros');
       });
   };
 

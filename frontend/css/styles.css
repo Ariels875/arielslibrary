@@ -110,3 +110,24 @@ button:hover {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }
+.book-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.book-item img {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.book-info {
+  flex-grow: 1;
+}
+
+.book-info h3 {
+  margin-top: 0;
+}

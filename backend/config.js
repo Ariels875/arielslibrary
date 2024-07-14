@@ -2,7 +2,7 @@ import mysql from 'mysql2/promise';
 
 class Database {
   constructor() {
-    if (!Database.instance) {
+    if (!Database.db) {
       this.pool = mysql.createPool({
         host: 'localhost',
         user: 'root',
@@ -13,10 +13,10 @@ class Database {
         queueLimit: 0
       });
 
-      Database.instance = this;
+      Database.db = this;
     }
 
-    return Database.instance;
+    return Database.db;
   }
 
   getPool() {
@@ -24,7 +24,7 @@ class Database {
   }
 }
 
-const instance = new Database();
-Object.freeze(instance);
+const db = new Database();
+Object.freeze(db);
 
-export default instance;
+export default db;

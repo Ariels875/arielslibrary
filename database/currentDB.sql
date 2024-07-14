@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `biblioteca` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `biblioteca`;
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: biblioteca
 -- ------------------------------------------------------
--- Server version	8.0.37
+-- Server version	8.0.38
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -58,6 +58,7 @@ CREATE TABLE `libros` (
   `Anio_publicacion` int NOT NULL,
   `Genero` varchar(50) NOT NULL,
   `Descripcion` longtext NOT NULL,
+  `URLPortada` longtext NOT NULL,
   PRIMARY KEY (`ISBN`),
   KEY `idx_libros_titulo` (`Titulo`),
   KEY `libros_ibfk_1` (`Autor_id`),
@@ -71,7 +72,7 @@ CREATE TABLE `libros` (
 
 LOCK TABLES `libros` WRITE;
 /*!40000 ALTER TABLE `libros` DISABLE KEYS */;
-INSERT INTO `libros` VALUES ('978-0-06-054201-3','La Casa de los Espíritus',2,1982,'Realismo Mágico',''),('978-0-385-53207-2','Norwegian Wood',5,1987,'Ficción',''),('978-0-7475-3269-9','Harry Potter y la Piedra Filosofal',3,1997,'Fantasía',''),('978-1-5011-8756-6','It',4,1986,'Terror',''),('978-3-16-148410-0','Cien Años de Soledad',1,1967,'Realismo Mágico','');
+INSERT INTO `libros` VALUES ('978-0-06-054201-3','La Casa de los Espíritus',2,1982,'Realismo Mágico','Una saga familiar que combina realismo mágico y política, siguiendo la vida de la familia Trueba en un país latinoamericano a lo largo de varias generaciones.','https://www.mrbooks.com/mrbooks/portadas/9789585457690.webp'),('978-0-385-53207-2','Norwegian Wood',5,1987,'Ficción','Una novela de Haruki Murakami que narra la vida de Toru Watanabe, un estudiante universitario en Tokio, y su complejo viaje emocional a través del amor, la pérdida y la búsqueda de identidad.','https://images.cdn3.buscalibre.com/fit-in/360x360/d3/f9/d3f965eeffaf773cae39667ae7961e30.jpg'),('978-0-7475-3269-9','Harry Potter y la Piedra Filosofal',3,1997,'Fantasía','El primer libro de la serie escrita por J.K. Rowling, donde el joven Harry Potter descubre que es un mago y comienza su aventura en la escuela de magia Hogwarts.','https://www.mrbooks.com/mrbooks/portadas/9789585234048.webp'),('978-1-5011-8756-6','It',4,1986,'Terror','Una novela de Stephen King que sigue a un grupo de niños que enfrentan a una entidad maligna que toma la forma de un payaso, abordando temas de amistad, miedo y la lucha entre el bien y el mal.','https://images.cdn2.buscalibre.com/fit-in/360x360/b1/08/b108ea8121a3ad2e2788a69c0b9926d0.jpg'),('978-3-16-148410-0','Cien Años de Soledad',1,1967,'Realismo Mágico','Escrita por Gabriel García Márquez, esta obra maestra del realismo mágico cuenta la historia de la familia Buendía en el pueblo ficticio de Macondo, explorando temas de amor, soledad y destino a través de varias generaciones.','https://www.mrbooks.com/mrbooks/portadas/9789588886213.webp');
 /*!40000 ALTER TABLE `libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,4 +265,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-02 16:31:25
+-- Dump completed on 2024-07-14  3:20:27

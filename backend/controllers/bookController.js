@@ -2,7 +2,8 @@ import Book from '../models/bookModel.js';
 
 export const getBooks = async (req, res) => {
   try {
-    const [books] = await Book.getAll();
+    const { offset = 0, limit = 20, query = '' } = req.query;
+    const [books] = await Book.getAll(parseInt(offset), parseInt(limit), query);
     res.json(books);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -31,7 +32,8 @@ export const createBook = async (req, res) => {
       Autor_id,
       Anio_publicacion,
       Genero,
-      Descripcion
+      Descripcion,
+      URLPortada
     });
     res.json({ success: true, ISBN: ISBN });
   } catch (err) {
@@ -48,7 +50,8 @@ export const updateBook = async (req, res) => {
       Autor_id,
       Anio_publicacion,
       Genero,
-      Descripcion
+      Descripcion,
+      URLPortada
     });
     res.json({ success: true });
   } catch (err) {
