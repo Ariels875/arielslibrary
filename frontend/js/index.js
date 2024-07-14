@@ -20,10 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const bookItem = document.createElement('div');
           bookItem.classList.add('book-item');
   
+          const imgContainer = document.createElement('div');
+          imgContainer.classList.add('book-img-container');
           const img = document.createElement('img');
           img.src = book.URLPortada;
           img.alt = book.Titulo;
-          bookItem.appendChild(img);
+          imgContainer.appendChild(img);
+          bookItem.appendChild(imgContainer);
   
           const info = document.createElement('div');
           info.classList.add('book-info');

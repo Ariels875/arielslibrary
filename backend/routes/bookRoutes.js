@@ -4,9 +4,9 @@ import { getBooks, getBookById, createBook, updateBook, deleteBook } from '../co
 const router = express.Router();
 
 router.get('/', getBooks);
-router.get('/:id', getBookById);
+router.get('/:ISBN', getBookById);
 router.post('/', createBook);
-router.put('/:id', updateBook);
-router.delete('/:id', deleteBook);
+router.put('/:ISBN', updateBook);
+router.delete('/:ISBN', deleteBook);
 
 export default router;

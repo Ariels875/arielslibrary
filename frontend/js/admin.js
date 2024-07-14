@@ -23,12 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     document.getElementById('edit-book').addEventListener('click', async () => {
-      const bookId = prompt('Ingrese el ID del libro a editar:');
-      if (bookId) {
+      const ISBN = prompt('Ingrese el ISBN del libro a editar:');
+      if (ISBN) {
         try {
-          const response = await fetch(`/books/${bookId}`);
+          const response = await fetch(`/books/${ISBN}`);
           const book = await response.json();
-          document.getElementById('book-id').value = book.id;
+          document.getElementById('book-id').value = book.ISBN;
           document.getElementById('book-title').value = book.title;
           document.getElementById('book-author').value = book.author;
           document.getElementById('book-year').value = book.year;
@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     document.getElementById('delete-book').addEventListener('click', async () => {
-      const bookId = prompt('Ingrese el ID del libro a eliminar:');
-      if (bookId) {
+      const ISBN = prompt('Ingrese el ID del libro a eliminar:');
+      if (ISBN) {
         try {
-          const response = await fetch(`/books/${bookId}`, { method: 'DELETE' });
+          const response = await fetch(`/books/${ISBN}`, { method: 'DELETE' });
           if (response.ok) {
             alert('Libro eliminado con éxito');
           } else {
@@ -59,22 +59,26 @@ document.addEventListener('DOMContentLoaded', () => {
   
     bookForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const bookId = document.getElementById('book-id').value;
+      const ISBN = document.getElementById('book-id').value;
       const bookData = {
-        title: document.getElementById('book-title').value,
-        author: document.getElementById('book-author').value,
-        year: document.getElementById('book-year').value
+        ISBN: ISBN,
+        Titulo: document.getElementById('book-title').value,
+        Autor_id: document.getElementById('book-author').value,
+        Anio_publicacion: document.getElementById('book-year').value,
+        Genero: document.getElementById('book-genre').value,
+        Descripcion: document.getElementById('book-description').value,
+        URLPortada: document.getElementById('book-cover-url').value
       };
       try {
-        const method = bookId ? 'PUT' : 'POST';
-        const url = bookId ? `/books/${bookId}` : '/books';
+        const method = ISBN ? 'PUT' : 'POST';
+        const url = ISBN ? `/books/${ISBN}` : '/books';
         const response = await fetch(url, {
           method,
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(bookData)
         });
         if (response.ok) {
-          alert(bookId ? 'Libro actualizado con éxito' : 'Libro agregado con éxito');
+          alert(ISBN ? 'Libro actualizado con éxito' : 'Libro agregado con éxito');
           bookForm.reset();
           displayForm('');
         } else {

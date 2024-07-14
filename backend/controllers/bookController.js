@@ -12,8 +12,8 @@ export const getBooks = async (req, res) => {
 
 export const getBookById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const [books] = await Book.getById(id);
+    const { ISBN } = req.params;
+    const [books] = await Book.getById(ISBN);
     if (books.length === 0) {
       return res.status(404).json({ message: 'Libro no encontrado' });
     }
@@ -43,9 +43,9 @@ export const createBook = async (req, res) => {
 
 export const updateBook = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { Titulo, Autor_id, Anio_publicacion, Genero, Descripcion } = req.body;
-    await Book.update(id, {
+    const { ISBN } = req.params;
+    const { Titulo, Autor_id, Anio_publicacion, Genero, Descripcion, URLPortada } = req.body;
+    await Book.update(ISBN, {
       Titulo,
       Autor_id,
       Anio_publicacion,
@@ -61,8 +61,8 @@ export const updateBook = async (req, res) => {
 
 export const deleteBook = async (req, res) => {
   try {
-    const { id } = req.params;
-    await Book.delete(id);
+    const { ISBN } = req.params;
+    await Book.delete(ISBN);
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
