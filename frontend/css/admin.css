@@ -132,6 +132,18 @@ input, select, textarea {
 #search-results tr:hover {
   background-color: #3a3a3a;
 }
+#book-form {
+  display: none;
+}
+#author-form {
+  display: none;
+}
+#user-form {
+  display: none;
+}
+#loan-form {
+  display: none;
+}
 
 @media (max-width: 768px) {
   main {
