@@ -72,7 +72,7 @@ CREATE TABLE `libros` (
 
 LOCK TABLES `libros` WRITE;
 /*!40000 ALTER TABLE `libros` DISABLE KEYS */;
-INSERT INTO `libros` VALUES ('978-0-06-054201-3','La Casa de los Espíritus',2,1982,'Realismo Mágico','Una saga familiar que combina realismo mágico y política, siguiendo la vida de la familia Trueba en un país latinoamericano a lo largo de varias generaciones.','https://www.mrbooks.com/mrbooks/portadas/9789585457690.webp'),('978-0-06-054205-4','Las 48 leyes del poder',3,1998,'Estrategia','El libro es una guía diseñada para poder mostrarle al lector cuáles son las cualidades personales que se deben de tener para alcanzar el poder en términos sociológicos','https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Las_48_Leyes_del_Poder_cover.svg/360px-Las_48_Leyes_del_Poder_cover.svg.png'),('978-0-06-054256-5','Asfixia',2,2001,'Ficcion','Asfixia (Choke) es una novela escrita por el autor Chuck Palahniuk, publicada en 2001. En 2008 fue adaptada a una película, la cual fue dirigida por Clark Gregg.\n\nEl protagonista, Víctor Mancini, es un estudiante de medicina fracasado como estudiante y como persona.','https://www.mrbooks.com/mrbooks/portadas/9789585541290.webp'),('978-0-385-53207-2','Norwegian Wood',5,1987,'Ficción','Una novela de Haruki Murakami que narra la vida de Toru Watanabe, un estudiante universitario en Tokio, y su complejo viaje emocional a través del amor, la pérdida y la búsqueda de identidad.','https://images.cdn3.buscalibre.com/fit-in/360x360/d3/f9/d3f965eeffaf773cae39667ae7961e30.jpg'),('978-0-7475-3269-9','Harry Potter y la Piedra Filosofal',3,1997,'Fantasía','El primer libro de la serie escrita por J.K. Rowling, donde el joven Harry Potter descubre que es un mago y comienza su aventura en la escuela de magia Hogwarts.','https://www.mrbooks.com/mrbooks/portadas/9789585234048.webp'),('978-1-5011-8756-6','It',4,1986,'Terror','Una novela de Stephen King que sigue a un grupo de niños que enfrentan a una entidad maligna que toma la forma de un payaso, abordando temas de amistad, miedo y la lucha entre el bien y el mal.','https://images.cdn2.buscalibre.com/fit-in/360x360/b1/08/b108ea8121a3ad2e2788a69c0b9926d0.jpg'),('978-3-16-148410-0','Cien Años de Soledad',1,1967,'Realismo Mágico','Escrita por Gabriel García Márquez, esta obra maestra del realismo mágico cuenta la historia de la familia Buendía en el pueblo ficticio de Macondo, explorando temas de amor, soledad y destino a través de varias generaciones.','https://www.mrbooks.com/mrbooks/portadas/9789588886213.webp');
+INSERT INTO `libros` VALUES ('978-0-06-054201-3','La Casa de los Espíritus',2,1982,'Realismo Mágico','Una saga familiar que combina realismo mágico y política, siguiendo la vida de la familia Trueba en un país latinoamericano a lo largo de varias generaciones.','https://www.mrbooks.com/mrbooks/portadas/9789585457690.webp'),('978-0-385-53207-2','Norwegian Wood',5,1987,'Ficción','Una novela de Haruki Murakami que narra la vida de Toru Watanabe, un estudiante universitario en Tokio, y su complejo viaje emocional a través del amor, la pérdida y la búsqueda de identidad.','https://images.cdn3.buscalibre.com/fit-in/360x360/d3/f9/d3f965eeffaf773cae39667ae7961e30.jpg'),('978-0-7475-3269-9','Harry Potter y la Piedra Filosofal',3,1997,'Fantasía','El primer libro de la serie escrita por J.K. Rowling, donde el joven Harry Potter descubre que es un mago y comienza su aventura en la escuela de magia Hogwarts.','https://www.mrbooks.com/mrbooks/portadas/9789585234048.webp'),('978-1-5011-8756-6','It',4,1986,'Terror','Una novela de Stephen King que sigue a un grupo de niños que enfrentan a una entidad maligna que toma la forma de un payaso, abordando temas de amistad, miedo y la lucha entre el bien y el mal.','https://images.cdn2.buscalibre.com/fit-in/360x360/b1/08/b108ea8121a3ad2e2788a69c0b9926d0.jpg'),('978-3-16-148410-0','Cien Años de Soledad',1,1967,'Realismo Mágico','Escrita por Gabriel García Márquez, esta obra maestra del realismo mágico cuenta la historia de la familia Buendía en el pueblo ficticio de Macondo, explorando temas de amor, soledad y destino a través de varias generaciones.','https://www.mrbooks.com/mrbooks/portadas/9789588886213.webp');
 /*!40000 ALTER TABLE `libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,7 @@ CREATE TABLE `usuarios` (
   `Rol` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Correo_electronico_UNIQUE` (`Correo_electronico`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +131,6 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (8,'Ariel','ariel@ariel.com','2024-07-14','$2b$10$BV8rrpr2qMtHkVvAUYUQh.UX71cstmm8w57Zv/a.D4gZJE6tjWpj2','admin'),(9,'admin','admin@admin.com','2024-07-14','$2b$10$db8d6IpKvzkKqOhlR/wCcOxN2.aQfuIbSZdNZthZIUt6kLh0/X.eq','admin'),(10,'bibliotecario','bibliotecario@bibliotecario.com','2024-07-14','$2b$10$gjdvv7TaKriZuaup6x7y1.roMPPR46zcKRqBbt/9uMnU.5pYhYFwS','bibliotecario'),(11,'lector','lector@lector.com','2024-07-14','$2b$10$yRCSC6Xov92DqF69jpRkEe5srhMZ/5ngvK0B/e64gOGxrZ1sCSS1m','lector'),(12,'Cristian Herrera','cristian@cris.com','2024-07-14','$2b$10$QKf6CaUWTkKzuU71P9AtVOYzvIwtFcCYb6xoada3C.nT7g/a3aPpu','lector');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,4 +265,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-14 23:00:25
+-- Dump completed on 2024-07-14  3:20:27
