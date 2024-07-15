@@ -12,12 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchType = document.getElementById('search-type');
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
+    const addBookForm = document.getElementById('add-book-form');
+    const updateBookForm = document.getElementById('update-book-form');
 
     
     // Display form
     const displayForm = (formId) => {
       console.log('displayForm llamado con formId:', formId);
-      const forms = [bookForm, authorForm, userForm, loanForm];
+      const forms = [updateBookForm, addBookForm, authorForm, userForm, loanForm];
       forms.forEach(form => {
           if (form) {
             console.log(`Cambiando visibilidad de ${form.id}: ${form.id === formId ? 'block' : 'none'}`);
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
   
-    initializeBookFunctions(bookForm, displayForm);
+    initializeBookFunctions(updateBookForm, addBookForm, displayForm);
     initializeAuthorFunctions(authorForm, displayForm);
     initializeUserFunctions(userForm, displayForm);
     initializeLoanFunctions(loanForm, displayForm);

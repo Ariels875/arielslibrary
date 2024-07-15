@@ -32,16 +32,33 @@
         <button id="edit-book">Editar Libro</button>
         <button id="delete-book">Eliminar Libro</button>
 
-        <form id="book-form">
-          <input type="text" id="book-ISBN" placeholder="ISBN" required>
-          <input type="text" id="book-title" placeholder="Título del libro" required>
-          <input type="number" id="book-author" placeholder="ID del autor" required>
-          <input type="number" id="book-year" placeholder="Año de publicación" required>
-          <input type="text" id="book-genre" placeholder="Género" required>
-          <textarea id="book-description" placeholder="Descripción"></textarea>
-          <input type="url" id="book-cover-url" placeholder="Link de la Portada" required>
-          <button type="submit">Guardar</button>
-        </form>
+        <div id="book-form"">
+          <h3>Agregar Libro</h3>
+          <form id="add-book-form">
+            <input type="text" id="add-book-ISBN" placeholder="ISBN" required>
+            <input type="text" id="add-book-title" placeholder="Título" required>
+            <input type="text" id="add-book-author" placeholder="ID del Autor" required>
+            <input type="number" id="add-book-year" placeholder="Año de publicación" required>
+            <input type="text" id="add-book-genre" placeholder="Género" required>
+            <textarea id="add-book-description" placeholder="Descripción"></textarea>
+            <input type="url" id="add-book-cover-url" placeholder="URL de la portada">
+            <button type="submit">Guardar Libro</button>
+          </form>
+        </div>
+
+        <div id="update-book-form">
+          <h3>Actualizar Libro</h3>
+          <form id="update-book-form">
+            <input type="text" id="update-book-ISBN" placeholder="ISBN" required readonly>
+            <input type="text" id="update-book-title" placeholder="Título" required>
+            <input type="text" id="update-book-author" placeholder="ID del Autor" required>
+            <input type="number" id="update-book-year" placeholder="Año de publicación" required>
+            <input type="text" id="update-book-genre" placeholder="Género" required>
+            <textarea id="update-book-description" placeholder="Descripción"></textarea>
+            <input type="url" id="update-book-cover-url" placeholder="URL de la portada">
+            <button type="submit">Actualizar Libro</button>
+          </form>
+        </div>
       </section>
 
       <section id="authors-section">

@@ -132,7 +132,7 @@ input, select, textarea {
 #search-results tr:hover {
   background-color: #3a3a3a;
 }
-#book-form {
+#add-book-form {
   display: none;
 }
 #author-form {
@@ -142,6 +142,9 @@ input, select, textarea {
   display: none;
 }
 #loan-form {
+  display: none;
+}
+#update-book-form {
   display: none;
 }
 
